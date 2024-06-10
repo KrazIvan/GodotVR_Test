@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://y73gt6g735k2"]
+
+[ext_resource type="PackedScene" uid="uid://bk2e5tbqy3jbi" path="res://Scenes/player.tscn" id="1_3rhnh"]
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_hxe32"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_xb58b"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_h2yl6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pcwoj"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_hxe32")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Player" parent="World" instance=ExtResource("1_3rhnh")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
+transform = Transform3D(0.916684, 0, -0.399613, -0.0591011, 0.989003, -0.135574, 0.395219, 0.147896, 0.906603, -4.08263, 0.718198, -1.64943)
+mesh = SubResource("PrismMesh_xb58b")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World"]
+transform = Transform3D(0.916684, 0, -0.399613, 0, 1, 0, 0.399613, 0, 0.916684, 4.30708, 0.0218463, -0.173779)
+mesh = SubResource("SphereMesh_h2yl6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="World"]
+transform = Transform3D(0.916684, 0, -0.399613, 0, 1, 0, 0.399613, 0, 0.916684, 0.101444, 0.644066, -6.91954)
+mesh = SubResource("BoxMesh_pcwoj")
