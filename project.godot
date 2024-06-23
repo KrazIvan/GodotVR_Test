@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+XrSimulator="*res://addons/xr-simulator/XRSimulator.tscn"
+
 [xr]
 
 openxr/extensions/eye_gaze_interaction=true

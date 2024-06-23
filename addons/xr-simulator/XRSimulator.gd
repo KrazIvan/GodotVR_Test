@@ -238,8 +238,8 @@ func rotate_device(event: InputEventMouseMotion, device: Node3D, rotation_axis: 
 	var motion = event.relative
 	match rotation_axis:
 		RotationAxis.x:
-			device.rotate_x(motion.x * -device_x_sensitivity/1000)
-			device.rotate(device.transform.basis.x, motion.y * -device_y_sensitivity/1000)
+			device.rotate_x(motion.y * -device_x_sensitivity/1000)
+			device.rotate(device.transform.basis.y, motion.x * -device_y_sensitivity/1000)
 		RotationAxis.y:
 			device.rotate_y(motion.x * -device_x_sensitivity/1000)
 			device.rotate(device.transform.basis.x, motion.y * -device_y_sensitivity/1000)
