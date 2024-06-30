@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://cdue0606wvxrn"
+path.s3tc="res://.godot/imported/ancient_corinth_-_peirene_fountain_0.jpg-8f1269b30c1c27648f5e04a9e3d0de8a.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "189b7f3dcf01d3ef8f529adf7bc91041"
+}
+
+[deps]
+
+source_file="res://models/maps/pirene/ancient_corinth_-_peirene_fountain_0.jpg"
+dest_files=["res://.godot/imported/ancient_corinth_-_peirene_fountain_0.jpg-8f1269b30c1c27648f5e04a9e3d0de8a.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=-3
+roughness/src_normal="res://models/maps/ancient_fountain/ancient_corinth_-_peirene_fountain_1.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
