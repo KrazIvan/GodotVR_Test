@@ -1,7 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk2e5tbqy3jbi"]
+[gd_scene load_steps=13 format=3 uid="uid://bk2e5tbqy3jbi"]
 
 [ext_resource type="PackedScene" uid="uid://raeeicvvindd" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_hand.tscn" id="1_63y4s"]
 [ext_resource type="PackedScene" uid="uid://njx823gyk04n" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_hand.tscn" id="2_bi3gh"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/functions/movement_turn.gd" id="2_tlw26"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_5mngn"]
+[ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="4_y8t1h"]
+[ext_resource type="PackedScene" uid="uid://bxm1ply47vaan" path="res://addons/godot-xr-tools/functions/movement_climb.tscn" id="5_jn63k"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/functions/movement_direct.gd" id="6_18cmf"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="6_k0wet"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="7_igcwm"]
+[ext_resource type="PackedScene" uid="uid://c78tjrtiyqna8" path="res://addons/godot-xr-tools/functions/movement_grapple.tscn" id="7_y8lp7"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/overrides/ground_physics_settings.gd" id="8_l8qgy"]
+
+[sub_resource type="Resource" id="Resource_bkpy1"]
+script = ExtResource("8_l8qgy")
+flags = 0
+move_drag = 5.0
+move_traction = 30.0
+stop_on_slope = true
+move_max_slope = 45.0
+jump_max_slope = 45.0
+jump_velocity = 10.0
+bounciness = 0.0
+bounce_threshold = 1.0
 
 [node name="Player" type="Node3D"]
 
@@ -16,9 +37,46 @@ tracker = &"right_hand"
 [node name="RightHand" parent="XROrigin3D/XRController3D" instance=ExtResource("1_63y4s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000245154, 0, -0.000192046)
 
+[node name="XRToolsMovementTurn" type="Node" parent="XROrigin3D/XRController3D" groups=["movement_providers"]]
+script = ExtResource("2_tlw26")
+turn_mode = 1
+step_turn_angle = 25.0
+
+[node name="FunctionPickup" parent="XROrigin3D/XRController3D" instance=ExtResource("3_5mngn")]
+
+[node name="MovementJump" parent="XROrigin3D/XRController3D" instance=ExtResource("4_y8t1h")]
+jump_button_action = "ax_button"
+
+[node name="MovementClimb" parent="XROrigin3D/XRController3D" instance=ExtResource("5_jn63k")]
+
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D" instance=ExtResource("6_k0wet")]
+show_laser = 2
+laser_length = 1
+
+[node name="MovementGrapple" parent="XROrigin3D/XRController3D" instance=ExtResource("7_y8lp7")]
+grapple_length = 30.0
+
 [node name="XRController3D2" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.311, -0.204, -1.06)
 tracker = &"left_hand"
 
 [node name="LeftHand" parent="XROrigin3D/XRController3D2" instance=ExtResource("2_bi3gh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00031358, -0.000375032, -2.55108e-05)
+
+[node name="XRToolsMovementDirect" type="Node" parent="XROrigin3D/XRController3D2" groups=["movement_providers"]]
+script = ExtResource("6_18cmf")
+strafe = true
+
+[node name="FunctionPickup" parent="XROrigin3D/XRController3D2" instance=ExtResource("3_5mngn")]
+
+[node name="MovementJump2" parent="XROrigin3D/XRController3D2" instance=ExtResource("4_y8t1h")]
+jump_button_action = "ax_button"
+
+[node name="MovementClimb" parent="XROrigin3D/XRController3D2" instance=ExtResource("5_jn63k")]
+
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D2" instance=ExtResource("6_k0wet")]
+show_laser = 2
+laser_length = 1
+
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("7_igcwm")]
+physics = SubResource("Resource_bkpy1")

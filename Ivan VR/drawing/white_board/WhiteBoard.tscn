@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://euvcyksx1n0v"]
+
+[ext_resource type="Script" path="res://drawing/white_board/white_board.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://cgohopdx7fdop" path="res://drawing/white_board/WhiteBoardViewport.tscn" id="2"]
+
+[sub_resource type="BoxShape3D" id="1"]
+resource_local_to_scene = true
+size = Vector3(3, 3, 0.002)
+
+[sub_resource type="QuadMesh" id="2"]
+resource_local_to_scene = true
+size = Vector2(3, 3)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pletq"]
+viewport_path = NodePath("WhiteBoardViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05p8s"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_pletq")
+
+[node name="WhiteBoard" type="StaticBody3D"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 3
+collision_mask = 7
+script = ExtResource("1")
+image_size = Vector2(1000, 1000)
+image_scale = 0.001
+initial_color = Color(1, 1, 1, 1)
+
+[node name="WhiteBoardCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.001)
+visible = false
+shape = SubResource("1")
+
+[node name="WhiteBoardMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("2")
+surface_material_override/0 = SubResource("StandardMaterial3D_05p8s")
+
+[node name="WhiteBoardViewport" parent="." instance=ExtResource("2")]
+handle_input_locally = false
+size = Vector2i(1000, 1000)
+render_target_clear_mode = 2
+render_target_update_mode = 1

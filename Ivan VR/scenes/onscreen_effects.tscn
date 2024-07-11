@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://bbmidw0x4d4hl"]
+
+[ext_resource type="Script" path="res://scenes/onscreen_effects.gd" id="1_a5vgj"]
+[ext_resource type="AudioStream" uid="uid://ct7020o7tamwp" path="res://audio/teleport.wav" id="2_m5qxs"]
+[ext_resource type="AudioStream" uid="uid://dj03wlhxrqp70" path="res://audio/space shield sounds/space shield sounds - 1.wav" id="3_ifwdg"]
+[ext_resource type="AudioStream" uid="uid://dppwnwn4iedhf" path="res://audio/space shield sounds/space shield sounds - 4.wav" id="4_50cb5"]
+[ext_resource type="AudioStream" uid="uid://bqftvxutd07hs" path="res://audio/space shield sounds/space shield sounds - 7.wav" id="5_5j0kh"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tsqih"]
+
+[sub_resource type="Animation" id="Animation_i1x71"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackTextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e857n"]
+resource_name = "fade_out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackTextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x80yk"]
+_data = {
+"RESET": SubResource("Animation_i1x71"),
+"fade_out": SubResource("Animation_e857n")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hreng"]
+streams_count = 4
+stream_0/stream = ExtResource("2_m5qxs")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_ifwdg")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("4_50cb5")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("5_5j0kh")
+stream_3/weight = 1.0
+
+[node name="OnScreen_Effects" type="Node"]
+script = ExtResource("1_a5vgj")
+
+[node name="BlackTextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_tsqih")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x80yk")
+}
+
+[node name="TeleportationSounds" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_hreng")

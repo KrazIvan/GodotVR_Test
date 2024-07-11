@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgohopdx7fdop"]
+
+[ext_resource type="Script" path="res://drawing/white_board/white_board_viewport.gd" id="1_xlkh6"]
+[ext_resource type="Shader" uid="uid://c2qryd2bvu0nu" path="res://drawing/white_board/shaders/white_board_clear.tres" id="2_vmg6f"]
+[ext_resource type="Shader" uid="uid://cqddoeu8fhqwr" path="res://drawing/white_board/shaders/white_board_blob.tres" id="3_ng0nl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eop23"]
+shader = ExtResource("2_vmg6f")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2c7fb"]
+shader = ExtResource("3_ng0nl")
+shader_parameter/inner_radius = 0.45
+
+[node name="WhiteBoardViewport" type="SubViewport"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1024, 1024)
+render_target_clear_mode = 1
+render_target_update_mode = 0
+script = ExtResource("1_xlkh6")
+
+[node name="Clear" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_eop23")
+use_parent_material = true
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Erase" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_2c7fb")
+offset_right = 1000.0
+offset_bottom = 1000.0
+
+[node name="Line" type="Line2D" parent="."]
+visible = false
+top_level = true
+default_color = Color(0.4, 0.501961, 1, 1)

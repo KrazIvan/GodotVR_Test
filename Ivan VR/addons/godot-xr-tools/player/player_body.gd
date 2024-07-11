@@ -339,6 +339,7 @@ func teleport(target : Transform3D) -> void:
 
 	# Report the player teleported
 	player_teleported.emit()
+	EventBus.emit_signal("black_screen_fade_out")
 
 
 ## Request a jump

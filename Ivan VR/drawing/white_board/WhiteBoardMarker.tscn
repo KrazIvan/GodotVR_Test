@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq2h2ftngpw3s"]
+
+[ext_resource type="Script" path="res://drawing/white_board/white_board_marker.gd" id="1_vk5li"]
+
+[sub_resource type="CylinderShape3D" id="1"]
+margin = 0.001
+height = 0.1
+radius = 0.01
+
+[sub_resource type="CylinderMesh" id="2"]
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.09
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="3"]
+top_radius = 0.007
+bottom_radius = 0.007
+height = 0.01
+
+[node name="Marker" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 3
+gravity_scale = 0.0
+script = ExtResource("1_vk5li")
+press_to_hold = false
+picked_up_layer = 65539
+release_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("1")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.005, 0, 0)
+mesh = SubResource("2")
+
+[node name="TipMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.045, 0, 0)
+mesh = SubResource("3")
+
+[node name="TipRayCast" type="RayCast3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.0302684, 0, 0)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 3
+hit_from_inside = true
+debug_shape_custom_color = Color(1, 0, 0, 0.188235)
